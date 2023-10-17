@@ -70,30 +70,30 @@ public class GUILogin extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         employLb.setText("Employee:");
-        getContentPane().add(employLb, new org.netbeans.lib.awtextra.AbsoluteConstraints(159, 149, 67, -1));
+        getContentPane().add(employLb, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 67, -1));
 
         emplpyTf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 emplpyTfActionPerformed(evt);
             }
         });
-        getContentPane().add(emplpyTf, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 146, 277, -1));
+        getContentPane().add(emplpyTf, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 277, -1));
 
         userLb.setText("User:");
-        getContentPane().add(userLb, new org.netbeans.lib.awtextra.AbsoluteConstraints(159, 198, 67, -1));
+        getContentPane().add(userLb, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 67, -1));
 
         userTf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userTfActionPerformed(evt);
             }
         });
-        getContentPane().add(userTf, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 195, 277, -1));
+        getContentPane().add(userTf, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 277, -1));
 
         passLb.setText("Password:");
-        getContentPane().add(passLb, new org.netbeans.lib.awtextra.AbsoluteConstraints(159, 255, 67, -1));
+        getContentPane().add(passLb, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 67, -1));
 
         keepSignCb.setText("Keep me signed in");
-        getContentPane().add(keepSignCb, new org.netbeans.lib.awtextra.AbsoluteConstraints(641, 174, -1, -1));
+        getContentPane().add(keepSignCb, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 180, -1, -1));
 
         showPassCb.setText("Show password");
         showPassCb.addActionListener(new java.awt.event.ActionListener() {
@@ -101,8 +101,8 @@ public class GUILogin extends javax.swing.JFrame {
                 showPassCbActionPerformed(evt);
             }
         });
-        getContentPane().add(showPassCb, new org.netbeans.lib.awtextra.AbsoluteConstraints(641, 222, -1, -1));
-        getContentPane().add(passTf, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 252, 277, -1));
+        getContentPane().add(showPassCb, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 230, -1, -1));
+        getContentPane().add(passTf, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, 277, -1));
 
         loginBtn.setText("Login");
         loginBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -110,7 +110,7 @@ public class GUILogin extends javax.swing.JFrame {
                 loginBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(loginBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 362, -1, -1));
+        getContentPane().add(loginBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 360, -1, -1));
 
         exitBtn.setText("Exit");
         exitBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -118,14 +118,14 @@ public class GUILogin extends javax.swing.JFrame {
                 exitBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(exitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(449, 362, -1, -1));
+        getContentPane().add(exitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 360, -1, -1));
 
         loginLb.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         loginLb.setText("LOGIN");
-        getContentPane().add(loginLb, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 60, 120, 50));
+        getContentPane().add(loginLb, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 60, 120, 50));
 
         noteLb.setText("Don't have an account?");
-        getContentPane().add(noteLb, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 400, -1, -1));
+        getContentPane().add(noteLb, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 400, -1, -1));
 
         registerBtn.setText("Create one");
         registerBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -133,7 +133,7 @@ public class GUILogin extends javax.swing.JFrame {
                 registerBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(registerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 420, -1, -1));
+        getContentPane().add(registerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 420, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
