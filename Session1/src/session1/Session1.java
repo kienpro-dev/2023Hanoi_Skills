@@ -14,6 +14,7 @@ import javax.swing.UIManager;
 import session1.GUI.GUILogin;
 import session1.dao.UserDao;
 import session1.Entity.Users;
+import session1.GUI.GUIAddListing;
 /**
  *
  * @author tienk
@@ -38,8 +39,7 @@ public class Session1 {
                     e.printStackTrace();
                 }
 
-            GUILogin gui = new GUILogin();
-            gui.setVisible(true);
+            new GUIAddListing().setVisible(true);
         });
         
     }

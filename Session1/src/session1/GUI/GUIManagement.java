@@ -25,7 +25,6 @@ public class GUIManagement extends javax.swing.JFrame {
         
         manageTable.setModel(defaut);
         ownerTable.setModel(defaut);
-        
         defaut.addColumn("Title");
         defaut.addColumn("Capacity");
         defaut.addColumn("Area");
@@ -88,9 +87,16 @@ public class GUIManagement extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         scrollPane.setViewportView(manageTable);
@@ -140,10 +146,23 @@ public class GUIManagement extends javax.swing.JFrame {
             new String [] {
                 "Title ", "Capacity", "Area", "Type", ""
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         scrollPane1.setViewportView(ownerTable);
 
         addListingBtn.setText("+ Add Listing");
+        addListingBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addListingBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout paneOwnerLayout = new javax.swing.GroupLayout(paneOwner);
         paneOwner.setLayout(paneOwnerLayout);
@@ -247,6 +266,11 @@ public class GUIManagement extends javax.swing.JFrame {
             defaut.addRow(new Object[]{i.getTitle(), i.getCapacity(), i.getAreaID().getId(), i.getItemTypeID().getName()});
         }
     }//GEN-LAST:event_searchBtnActionPerformed
+
+    private void addListingBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addListingBtnActionPerformed
+        new GUIAddListing().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_addListingBtnActionPerformed
 
     /**
      * @param args the command line arguments

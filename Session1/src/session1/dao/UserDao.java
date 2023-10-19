@@ -16,10 +16,15 @@ import session1.Entity.Usertypes;
  * @author tienk
  */
 public class UserDao {
+
+    public Users getUser(String username) {
+        return Manager.em.createNamedQuery("Users.findByUsername", Users.class).setParameter("username", username).getSingleResult();
+    }
+
     public List<Users> getUsers() throws Exception {
         return Manager.em.createNamedQuery("Users.findAll", Users.class).getResultList();
     }
-    
+
     public void addUsers(Users user) {
         Manager.em.getTransaction().begin();
         Manager.em.persist(user);

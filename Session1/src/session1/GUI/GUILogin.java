@@ -12,6 +12,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import session1.dao.UserDao;
 import session1.Entity.Users;
+import session1.SharedData;
 
 /**
  *
@@ -19,7 +20,7 @@ import session1.Entity.Users;
  */
 public class GUILogin extends javax.swing.JFrame {
 
-        private UserDao userDao = new UserDao();
+    private UserDao userDao = new UserDao();
 
     /**
      * Creates new form GUILogin
@@ -166,15 +167,22 @@ public class GUILogin extends javax.swing.JFrame {
 
         try {
             List<Users> users = userDao.getUsers();
-            for(Users u : users) {
-                if(u.getUserTypeID().getId() == 1 && employTf.getText().equals(u.getUsername()) && new String(passTf.getPassword()).equals(u.getPassword()) && userTf.getText().isEmpty()) {
+            for (Users u : users) {
+                if (u.getUserTypeID().getId() == 1 && employTf.getText().equals(u.getUsername()) && new String(passTf.getPassword()).equals(u.getPassword()) && userTf.getText().isEmpty()) {
+                    SharedData.getInstance().setUsername(employTf.getText());
+
                     JOptionPane.showMessageDialog(null, "Success!", "LOGIN SUCCESS", JOptionPane.INFORMATION_MESSAGE);
                     new GUIManagement().setVisible(true);
                     dispose();
                 } else if (u.getUserTypeID().getId() == 2 && userTf.getText().equals(u.getUsername()) && new String(passTf.getPassword()).equals(u.getPassword()) && employTf.getText().isEmpty()) {
+                    SharedData.getInstance().setUsername(employTf.getText());
+
                     JOptionPane.showMessageDialog(null, "Success!", "LOGIN SUCCESS", JOptionPane.INFORMATION_MESSAGE);
                     new GUIManagement().setVisible(true);
                     dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error!", "INVALID", JOptionPane.ERROR);
+
                 }
             }
         } catch (Exception ex) {

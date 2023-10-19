@@ -15,11 +15,21 @@ import session1.dao.Manager;
  * @author tienk
  */
 public class ItemsDao {
+    public List<Items> findAll() {
+        return Manager.em.createNamedQuery("Items.findAll", Items.class).getResultList();
+    }
+    
     public List<Items> findCustom() {
         return Manager.em.createNamedQuery("Items.findCustom", Items.class).getResultList();
     }
     
     public List<Items> findByTitle(String title) {
         return Manager.em.createNamedQuery("Items.findCustom2", Items.class).setParameter("title", title).getResultList();
+    }
+    
+    public void addItems(Items item) {
+        Manager.em.getTransaction().begin();
+        Manager.em.persist(item);
+        Manager.em.getTransaction().commit();
     }
 }

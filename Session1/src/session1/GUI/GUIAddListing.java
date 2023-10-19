@@ -4,17 +4,68 @@
  */
 package session1.GUI;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.List;
+import java.util.UUID;
+import javax.swing.JComboBox;
+import javax.swing.table.DefaultTableModel;
+import session1.Entity.Amenities;
+import session1.Entity.Attractions;
+import session1.Entity.Itemamenities;
+import session1.Entity.Itemattractions;
+import session1.Entity.Items;
+import session1.Entity.Itemtypes;
+import session1.SharedData;
+import session1.dao.AmenitesDao;
+import session1.dao.AttractionDao;
+import session1.dao.ItemAmeDao;
+import session1.dao.ItemAtractDao;
+import session1.dao.ItemTypeDao;
+import session1.dao.ItemsDao;
+import session1.dao.UserDao;
+
 /**
  *
  * @author tienk
  */
 public class GUIAddListing extends javax.swing.JFrame {
 
+    private SharedData sharedData;
+    private ItemsDao itemsDao = new ItemsDao();
+    private UserDao userDao = new UserDao();
+    private ItemTypeDao itemTypeDao = new ItemTypeDao();
+    private AmenitesDao amenitesDao = new AmenitesDao();
+    private ItemAmeDao itemAmeDao = new ItemAmeDao();
+    private AttractionDao attractionsDao = new AttractionDao();
+    private ItemAtractDao itemattractions = new ItemAtractDao();
+
+    private DefaultTableModel defaut = new DefaultTableModel();
+
     /**
      * Creates new form GUIAddListing
      */
     public GUIAddListing() {
+        sharedData = SharedData.getInstance();
         initComponents();
+//        amenitiesTable.setModel(defaut);
+        List<Itemtypes> its = itemTypeDao.getAll();
+        for (Itemtypes it : its) {
+            typeCbb.addItem(it.getName());
+        }
+
+        List<Amenities> amenitieses = amenitesDao.getAmenities();
+        for (int i = 0; i < amenitieses.size(); i++) {
+            amenitiesTable.setValueAt(amenitieses.get(i).getName(), i, 0);
+        }
+
+        List<Attractions> attractions = attractionsDao.getAttractions();
+        for (int i = 0; i < attractions.size(); i++) {
+            attractionTable.setValueAt(attractions.get(i).getName(), i, 0);
+            attractionTable.setValueAt(attractions.get(i).getAreaID().getName(), i, 1);
+
+        }
+
     }
 
     /**
@@ -61,13 +112,17 @@ public class GUIAddListing extends javax.swing.JFrame {
         noteLb = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         attractionTable = new javax.swing.JTable();
+        nextBtn = new javax.swing.JButton();
+        finishBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1000, 500));
+        setPreferredSize(new java.awt.Dimension(1000, 600));
+
+        tabPane.setPreferredSize(new java.awt.Dimension(1000, 400));
+
+        listingPane.setPreferredSize(new java.awt.Dimension(1000, 500));
 
         typeLb.setText("Type:");
-
-        typeCbb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         tittleLb.setText("Tittle:");
 
@@ -228,7 +283,7 @@ public class GUIAddListing extends javax.swing.JFrame {
                         .addComponent(timeLb)
                         .addComponent(minLb)
                         .addComponent(minSpin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         tabPane.addTab("Listing Details", listingPane);
@@ -237,6 +292,13 @@ public class GUIAddListing extends javax.swing.JFrame {
 
         amenitiesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null},
+                {null,  new Boolean(false)},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
                 {null, null},
                 {null, null},
                 {null, null},
@@ -249,9 +311,16 @@ public class GUIAddListing extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.Object.class, java.lang.Boolean.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, true
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(amenitiesTable);
@@ -277,7 +346,7 @@ public class GUIAddListing extends javax.swing.JFrame {
                 .addComponent(chooseLb)
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         tabPane.addTab("Amenites", amenitiesPane);
@@ -289,12 +358,116 @@ public class GUIAddListing extends javax.swing.JFrame {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
                 {null, null, null, null, null}
             },
             new String [] {
                 "Attraction", "Area", "Distance (km)", "On Foot (minutes)", "By Car (minutes)"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(attractionTable);
 
         javax.swing.GroupLayout distancePaneLayout = new javax.swing.GroupLayout(distancePane);
@@ -314,21 +487,47 @@ public class GUIAddListing extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addComponent(noteLb, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         tabPane.addTab("Distance to Attraction", distancePane);
+
+        nextBtn.setText("Next");
+        nextBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextBtnActionPerformed(evt);
+            }
+        });
+
+        finishBtn.setText("Finish");
+        finishBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finishBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabPane)
+            .addComponent(tabPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(nextBtn)
+                .addGap(30, 30, 30)
+                .addComponent(finishBtn)
+                .addGap(64, 64, 64))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabPane)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(tabPane, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nextBtn)
+                    .addComponent(finishBtn))
+                .addGap(15, 15, 15))
         );
 
         pack();
@@ -349,6 +548,78 @@ public class GUIAddListing extends javax.swing.JFrame {
     private void descriptionTfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descriptionTfActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_descriptionTfActionPerformed
+
+    private void finishBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishBtnActionPerformed
+        List<Items> items = itemsDao.findAll();
+
+        Items item = new Items();
+        item.setId(items.get(items.size() - 1).getId() + 1);
+        item.setGuid(UUID.randomUUID().toString());
+        item.setUserID(userDao.getUser(sharedData.getUsername()));
+        item.setItemTypeID(itemTypeDao.getItemtypes(typeCbb.getSelectedItem().toString()));
+
+        item.setAreaID(null);
+
+        item.setTitle(titleTf.getText());
+        item.setCapacity((int) capSpin.getValue());
+        item.setNumberOfBeds((int) bedsSpin.getValue());
+        item.setNumberOfBedrooms((int) bedroomSpin.getValue());
+        item.setNumberOfBathrooms((int) badroomSpin.getValue());
+        item.setExactAddress(addressTf.getText());
+        item.setApproximateAddress(address2Tf.getText());
+        item.setDescription(descriptionTf.getText());
+        item.setHostRules(ruleTf.getText());
+        item.setMinimumNights((int) minSpin.getValue());
+        item.setMaximumNights((int) maxSpin.getValue());
+
+        itemsDao.addItems(item);
+
+        int rowCount = amenitiesTable.getRowCount();
+        List<Itemamenities> itemamenitieses = itemAmeDao.getItemamenitieses();
+        for (int row = 0; row < rowCount; row++) {
+            boolean checked = (amenitiesTable.getValueAt(row, 1) != null);
+
+            if (checked) {
+                String value = (String) amenitiesTable.getValueAt(row, 0);
+                Itemamenities ia = new Itemamenities();
+                ia.setId(itemamenitieses.get(itemamenitieses.size() - 1).getId() + 1);
+                ia.setGuid(UUID.randomUUID().toString());
+                ia.setItemID(item);
+                ia.setAmenityID(amenitesDao.getAmenity(value));
+                itemAmeDao.add(ia);
+            }
+        }
+
+        int rowCount2 = attractionTable.getRowCount();
+        List<Itemattractions> itemattractions = this.itemattractions.getItemAttractions();
+
+        for (int row = 0; row < rowCount; row++) {
+            boolean checked = (attractionTable.getValueAt(row, 2) != null || attractionTable.getValueAt(row, 3) != null || attractionTable.getValueAt(row, 4) != null);
+            if (checked) {
+                BigDecimal value1 = (BigDecimal) attractionTable.getValueAt(row, 2);
+                BigInteger value2 = (BigInteger) attractionTable.getValueAt(row, 3);
+                BigInteger value3 = (BigInteger) attractionTable.getValueAt(row, 4);
+
+                Itemattractions iat = new Itemattractions();
+                iat.setId(itemattractions.get(itemattractions.size() - 1).getId() + 1);
+                iat.setGuid(UUID.randomUUID().toString());
+                iat.setItemID(item);
+                iat.setAttractionID(attractionsDao.getAttraction(attractionTable.getValueAt(row, 0).toString()));
+                iat.setDistance(value1);
+                iat.setDurationOnFoot(value2);
+                iat.setDurationByCar(value3);
+                
+                itemattractions.add(iat);
+            }
+
+        }
+
+    }//GEN-LAST:event_finishBtnActionPerformed
+
+    private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
+        int next = (tabPane.getSelectedIndex() + 1) % tabPane.getTabCount();
+        tabPane.setSelectedIndex(next);
+    }//GEN-LAST:event_nextBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -405,6 +676,7 @@ public class GUIAddListing extends javax.swing.JFrame {
     private javax.swing.JLabel descriptionLb;
     private javax.swing.JTextField descriptionTf;
     private javax.swing.JPanel distancePane;
+    private javax.swing.JButton finishBtn;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel listingPane;
@@ -412,6 +684,7 @@ public class GUIAddListing extends javax.swing.JFrame {
     private javax.swing.JSpinner maxSpin;
     private javax.swing.JLabel minLb;
     private javax.swing.JSpinner minSpin;
+    private javax.swing.JButton nextBtn;
     private javax.swing.JLabel noteLb;
     private javax.swing.JTextField ruleTf;
     private javax.swing.JLabel rulesLb;
