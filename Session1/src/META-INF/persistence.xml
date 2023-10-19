@@ -1,22 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
-  <persistence-unit name="Session1">
-    <class>session1.model.Transactiontypes</class>
-    <class>session1.model.Itemprices</class>
-    <class>session1.model.Usertypes</class>
-    <class>session1.model.Attractions</class>
-    <class>session1.model.Itemtypes</class>
-    <class>session1.model.Itemattractions</class>
-    <class>session1.model.Dimdates</class>
-    <class>session1.model.Itemamenities</class>
-    <class>session1.model.Cancellationrefundfees</class>
-    <class>session1.model.Coupons</class>
-    <class>session1.model.Items</class>
-    <class>session1.model.Cancellationpolicies</class>
-    <class>session1.model.Areas</class>
-    <class>session1.model.Itempictures</class>
-    <class>session1.model.Users</class>
-    <class>session1.model.Amenities</class>
-    <class>session1.model.Transactions</class>
+<persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence           http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+  <persistence-unit name="Session1PU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>session1.Entity.Attractions</class>
+    <class>session1.Entity.Coupons</class>
+    <class>session1.Entity.Cancellationpolicies</class>
+    <class>session1.Entity.Items</class>
+    <class>session1.Entity.Cancellationrefundfees</class>
+    <class>session1.Entity.Users</class>
+    <class>session1.Entity.Itempictures</class>
+    <class>session1.Entity.Dimdates</class>
+    <class>session1.Entity.Transactiontypes</class>
+    <class>session1.Entity.Amenities</class>
+    <class>session1.Entity.Areas</class>
+    <class>session1.Entity.Itemattractions</class>
+    <class>session1.Entity.Transactions</class>
+    <class>session1.Entity.Itemamenities</class>
+    <class>session1.Entity.Itemprices</class>
+    <class>session1.Entity.Itemtypes</class>
+    <class>session1.Entity.Usertypes</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/session1"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="123456"/>
+    </properties>
   </persistence-unit>
 </persistence>

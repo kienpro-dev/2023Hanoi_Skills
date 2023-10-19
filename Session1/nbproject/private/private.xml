@@ -3,11 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/tienk/OneDrive/Documents/Code/Thi_Tay_Nghe/Session1/src/session1/Entity/Users.java</file>
+            <file>file:/C:/Users/tienk/OneDrive/Documents/Code/Thi_Tay_Nghe/Session1/src/session1/dao/UserDao.java</file>
             <file>file:/C:/Users/tienk/OneDrive/Documents/Code/Thi_Tay_Nghe/Session1/src/session1/Session1.java</file>
+            <file>file:/C:/Users/tienk/OneDrive/Documents/Code/Thi_Tay_Nghe/Session1/src/session1/dao/UsersTypeDao.java</file>
+            <file>file:/C:/Users/tienk/OneDrive/Documents/Code/Thi_Tay_Nghe/Session1/src/session1/dao/ItemsDao.java</file>
             <file>file:/C:/Users/tienk/OneDrive/Documents/Code/Thi_Tay_Nghe/Session1/src/session1/GUI/GUIAddListing.java</file>
+            <file>file:/C:/Users/tienk/OneDrive/Documents/Code/Thi_Tay_Nghe/Session1/src/session1/JDBCConnection.java</file>
             <file>file:/C:/Users/tienk/OneDrive/Documents/Code/Thi_Tay_Nghe/Session1/src/session1/GUI/GUIManagement.java</file>
-            <file>file:/C:/Users/tienk/OneDrive/Documents/Code/Thi_Tay_Nghe/Session1/src/session1/model/Amenities.java</file>
             <file>file:/C:/Users/tienk/OneDrive/Documents/Code/Thi_Tay_Nghe/Session1/src/session1/GUI/GUIRegister.java</file>
+            <file>file:/C:/Users/tienk/OneDrive/Documents/Code/Thi_Tay_Nghe/Session1/src/session1/dao/Manager.java</file>
+            <file>file:/C:/Users/tienk/OneDrive/Documents/Code/Thi_Tay_Nghe/Session1/src/session1/Entity/Items.java</file>
             <file>file:/C:/Users/tienk/OneDrive/Documents/Code/Thi_Tay_Nghe/Session1/src/session1/GUI/GUILogin.java</file>
         </group>
     </open-files>

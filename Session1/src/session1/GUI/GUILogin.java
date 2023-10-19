@@ -4,11 +4,22 @@
  */
 package session1.GUI;
 
+import java.awt.Dialog;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
+import session1.dao.UserDao;
+import session1.Entity.Users;
+
 /**
  *
  * @author tienk
  */
 public class GUILogin extends javax.swing.JFrame {
+
+        private UserDao userDao = new UserDao();
 
     /**
      * Creates new form GUILogin
@@ -29,7 +40,7 @@ public class GUILogin extends javax.swing.JFrame {
         jFrame1 = new javax.swing.JFrame();
         jFrame2 = new javax.swing.JFrame();
         employLb = new javax.swing.JLabel();
-        emplpyTf = new javax.swing.JTextField();
+        employTf = new javax.swing.JTextField();
         userLb = new javax.swing.JLabel();
         userTf = new javax.swing.JTextField();
         passLb = new javax.swing.JLabel();
@@ -72,12 +83,12 @@ public class GUILogin extends javax.swing.JFrame {
         employLb.setText("Employee:");
         getContentPane().add(employLb, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 67, -1));
 
-        emplpyTf.addActionListener(new java.awt.event.ActionListener() {
+        employTf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emplpyTfActionPerformed(evt);
+                employTfActionPerformed(evt);
             }
         });
-        getContentPane().add(emplpyTf, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 277, -1));
+        getContentPane().add(employTf, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 277, -1));
 
         userLb.setText("User:");
         getContentPane().add(userLb, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 67, -1));
@@ -138,20 +149,37 @@ public class GUILogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void emplpyTfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emplpyTfActionPerformed
+    private void employTfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employTfActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_emplpyTfActionPerformed
+    }//GEN-LAST:event_employTfActionPerformed
 
     private void userTfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTfActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_userTfActionPerformed
 
     private void showPassCbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPassCbActionPerformed
-        // TODO add your handling code here:
+        JCheckBox checkbox = (JCheckBox) evt.getSource();
+        passTf.setEchoChar(checkbox.isSelected() ? '\u0000' : '*');
     }//GEN-LAST:event_showPassCbActionPerformed
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
-        // TODO add your handling code here:
+
+        try {
+            List<Users> users = userDao.getUsers();
+            for(Users u : users) {
+                if(u.getUserTypeID().getId() == 1 && employTf.getText().equals(u.getUsername()) && new String(passTf.getPassword()).equals(u.getPassword()) && userTf.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Success!", "LOGIN SUCCESS", JOptionPane.INFORMATION_MESSAGE);
+                    new GUIManagement().setVisible(true);
+                    dispose();
+                } else if (u.getUserTypeID().getId() == 2 && userTf.getText().equals(u.getUsername()) && new String(passTf.getPassword()).equals(u.getPassword()) && employTf.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Success!", "LOGIN SUCCESS", JOptionPane.INFORMATION_MESSAGE);
+                    new GUIManagement().setVisible(true);
+                    dispose();
+                }
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(GUILogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_loginBtnActionPerformed
 
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
@@ -201,7 +229,7 @@ public class GUILogin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel employLb;
-    private javax.swing.JTextField emplpyTf;
+    private javax.swing.JTextField employTf;
     private javax.swing.JButton exitBtn;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;

@@ -4,17 +4,37 @@
  */
 package session1.GUI;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import session1.Entity.Items;
+import session1.dao.ItemsDao;
+
 /**
  *
  * @author tienk
  */
 public class GUIManagement extends javax.swing.JFrame {
-
+    private ItemsDao itemsDao = new ItemsDao();
+    private DefaultTableModel defaut = new DefaultTableModel();
     /**
      * Creates new form GUIManagement
      */
     public GUIManagement() {
         initComponents();
+        List<Items> items = itemsDao.findCustom();
+        
+        manageTable.setModel(defaut);
+        ownerTable.setModel(defaut);
+        
+        defaut.addColumn("Title");
+        defaut.addColumn("Capacity");
+        defaut.addColumn("Area");
+        defaut.addColumn("Type");
+        
+        for(Items i : items) {
+            defaut.addRow(new Object[]{i.getTitle(), i.getCapacity(), i.getAreaID().getId(), i.getItemTypeID().getName()});
+        }
+        
     }
 
     /**
@@ -32,6 +52,7 @@ public class GUIManagement extends javax.swing.JFrame {
         searchTf = new javax.swing.JTextField();
         scrollPane = new javax.swing.JScrollPane();
         manageTable = new javax.swing.JTable();
+        searchBtn = new javax.swing.JButton();
         paneOwner = new javax.swing.JPanel();
         scrollPane1 = new javax.swing.JScrollPane();
         ownerTable = new javax.swing.JTable();
@@ -63,8 +84,23 @@ public class GUIManagement extends javax.swing.JFrame {
             new String [] {
                 "Title ", "Capacity", "Area", "Type"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         scrollPane.setViewportView(manageTable);
+
+        searchBtn.setText("Search");
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout paneTraverLayout = new javax.swing.GroupLayout(paneTraver);
         paneTraver.setLayout(paneTraverLayout);
@@ -74,14 +110,19 @@ public class GUIManagement extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addGroup(paneTraverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 837, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchTf, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(paneTraverLayout.createSequentialGroup()
+                        .addComponent(searchTf, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(searchBtn)))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         paneTraverLayout.setVerticalGroup(
             paneTraverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paneTraverLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(searchTf, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(paneTraverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(searchTf, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                    .addComponent(searchBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(28, Short.MAX_VALUE))
@@ -191,12 +232,21 @@ public class GUIManagement extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutBtnActionPerformed
 
     private void searchTfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTfActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_searchTfActionPerformed
 
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_exitBtnActionPerformed
+
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        defaut.setRowCount(0);
+        
+        List<Items> items = itemsDao.findByTitle(searchTf.getText());
+        for(Items i : items) {
+            defaut.addRow(new Object[]{i.getTitle(), i.getCapacity(), i.getAreaID().getId(), i.getItemTypeID().getName()});
+        }
+    }//GEN-LAST:event_searchBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -244,6 +294,7 @@ public class GUIManagement extends javax.swing.JFrame {
     private javax.swing.JPanel paneTraver;
     private javax.swing.JScrollPane scrollPane;
     private javax.swing.JScrollPane scrollPane1;
+    private javax.swing.JButton searchBtn;
     private javax.swing.JTextField searchTf;
     private javax.swing.JTabbedPane tabPane;
     // End of variables declaration//GEN-END:variables

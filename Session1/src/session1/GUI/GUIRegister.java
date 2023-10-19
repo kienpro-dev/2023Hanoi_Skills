@@ -4,12 +4,29 @@
  */
 package session1.GUI;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import session1.Entity.Users;
+import session1.Entity.Usertypes;
+import session1.dao.UserDao;
+import session1.dao.UsersTypeDao;
+
 /**
  *
  * @author tienk
  */
 public class GUIRegister extends javax.swing.JFrame {
 
+    private UserDao userDao = new UserDao();
+    private UsersTypeDao userType = new UsersTypeDao();
     /**
      * Creates new form GUIRegister
      */
@@ -45,9 +62,9 @@ public class GUIRegister extends javax.swing.JFrame {
         backLoginBtn = new javax.swing.JButton();
         passPf = new javax.swing.JPasswordField();
         retypePassPf = new javax.swing.JPasswordField();
+        termLb = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1000, 500));
 
         registerLb.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         registerLb.setText("Create account");
@@ -146,6 +163,14 @@ public class GUIRegister extends javax.swing.JFrame {
             }
         });
 
+        termLb.setText("View Term and Conditions");
+        termLb.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        termLb.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                termLbMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -182,15 +207,17 @@ public class GUIRegister extends javax.swing.JFrame {
                         .addComponent(familyLb)
                         .addGap(18, 18, 18)
                         .addComponent(familySp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(registerBtn)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(backLoginBtn))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(retypePassLb)
-                            .addGap(18, 18, 18)
-                            .addComponent(retypePassPf, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(termLb)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(registerBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(backLoginBtn))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(retypePassLb)
+                                .addGap(18, 18, 18)
+                                .addComponent(retypePassPf, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(130, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -227,7 +254,9 @@ public class GUIRegister extends javax.swing.JFrame {
                     .addComponent(passPf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(retypePassPf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(67, 67, 67)
-                .addComponent(agreeTermCb)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(agreeTermCb)
+                    .addComponent(termLb))
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(registerBtn)
@@ -274,12 +303,50 @@ public class GUIRegister extends javax.swing.JFrame {
     }//GEN-LAST:event_backLoginBtnActionPerformed
 
     private void registerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerBtnActionPerformed
-        // TODO add your handling code here:
+        Users u = new Users();
+        try {
+            u.setId(userDao.getUsers().get(userDao.getUsers().size() - 1).getId() + 1);
+        } catch (Exception ex) {
+            Logger.getLogger(GUIRegister.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try {
+            u.setUserTypeID(userType.getUsertypes("user"));
+        } catch (SQLException ex) {
+            Logger.getLogger(GUIRegister.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     
+        u.setUsername(userTf.getText());
+        u.setPassword((new String(passPf.getPassword())).equals(new String(retypePassPf.getPassword())) ? (new String(passPf.getPassword())) : "123456");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+        try {
+            u.setBirthDate(sdf.parse(birthdayTf.getText()));
+        } catch (ParseException ex) {
+            Logger.getLogger(GUIRegister.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        u.setFullName(nameTf.getText());
+        u.setFamilyCount((int) familySp.getValue());
+        u.setGender(maleCb.isSelected());
+        u.setGuid(UUID.randomUUID().toString());
+        userDao.addUsers(u);
+        JOptionPane.showMessageDialog(null, "Success!", "REGISTER SUCCESS", JOptionPane.INFORMATION_MESSAGE);
+        new GUIManagement().setVisible(true);
+        dispose();
     }//GEN-LAST:event_registerBtnActionPerformed
 
     private void passPfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passPfActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_passPfActionPerformed
+    
+    private void termLbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_termLbMouseClicked
+
+        try {
+            Desktop.getDesktop().open(new File("C:\\Users\\tienk\\OneDrive\\Documents\\Code\\Thi_Tay_Nghe\\2023HANOI_Skills (GPPM CNTT)\\2023HANOI_Skills (GPPM CNTT)\\DataFiles\\WSC2022SE_TP09_Session1_actual_en\\Terms.txt"));
+        } catch (IOException ex) {
+            Logger.getLogger(GUIRegister.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_termLbMouseClicked
 
     /**
      * @param args the command line arguments
@@ -334,6 +401,7 @@ public class GUIRegister extends javax.swing.JFrame {
     private javax.swing.JLabel registerLb;
     private javax.swing.JLabel retypePassLb;
     private javax.swing.JPasswordField retypePassPf;
+    private javax.swing.JLabel termLb;
     private javax.swing.JLabel userLb;
     private javax.swing.JTextField userTf;
     // End of variables declaration//GEN-END:variables
