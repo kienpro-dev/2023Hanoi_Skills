@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence           http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+  <persistence-unit name="Session4PU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>session4.entity.Transactions</class>
+    <class>session4.entity.Itemattractions</class>
+    <class>session4.entity.Bookings</class>
+    <class>session4.entity.Itemtypes</class>
+    <class>session4.entity.Dimdates</class>
+    <class>session4.entity.Itemscores</class>
+    <class>session4.entity.Users</class>
+    <class>session4.entity.Cancellationrefundfees</class>
+    <class>session4.entity.Usertypes</class>
+    <class>session4.entity.Cancellationpolicies</class>
+    <class>session4.entity.Itempictures</class>
+    <class>session4.entity.Coupons</class>
+    <class>session4.entity.Scores</class>
+    <class>session4.entity.Amenities</class>
+    <class>session4.entity.Itemamenities</class>
+    <class>session4.entity.Areas</class>
+    <class>session4.entity.Transactiontypes</class>
+    <class>session4.entity.Bookingdetails</class>
+    <class>session4.entity.Itemprices</class>
+    <class>session4.entity.Attractions</class>
+    <class>session4.entity.Items</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/session4"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="123456"/>
+    </properties>
+  </persistence-unit>
+</persistence>
