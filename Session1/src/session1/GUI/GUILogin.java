@@ -175,14 +175,11 @@ public class GUILogin extends javax.swing.JFrame {
                     new GUIManagement().setVisible(true);
                     dispose();
                 } else if (u.getUserTypeID().getId() == 2 && userTf.getText().equals(u.getUsername()) && new String(passTf.getPassword()).equals(u.getPassword()) && employTf.getText().isEmpty()) {
-                    SharedData.getInstance().setUsername(employTf.getText());
+                    SharedData.getInstance().setUsername(userTf.getText());
 
                     JOptionPane.showMessageDialog(null, "Success!", "LOGIN SUCCESS", JOptionPane.INFORMATION_MESSAGE);
                     new GUIManagement().setVisible(true);
                     dispose();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Error!", "INVALID", JOptionPane.ERROR);
-
                 }
             }
         } catch (Exception ex) {

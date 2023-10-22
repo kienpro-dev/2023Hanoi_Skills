@@ -39,7 +39,7 @@ public class Session1 {
                     e.printStackTrace();
                 }
 
-            new GUIAddListing().setVisible(true);
+            new GUILogin().setVisible(true);
         });
         
     }

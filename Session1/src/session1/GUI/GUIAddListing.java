@@ -9,8 +9,10 @@ import java.math.BigInteger;
 import java.util.List;
 import java.util.UUID;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import session1.Entity.Amenities;
+import session1.Entity.Areas;
 import session1.Entity.Attractions;
 import session1.Entity.Itemamenities;
 import session1.Entity.Itemattractions;
@@ -18,6 +20,7 @@ import session1.Entity.Items;
 import session1.Entity.Itemtypes;
 import session1.SharedData;
 import session1.dao.AmenitesDao;
+import session1.dao.AreasDao;
 import session1.dao.AttractionDao;
 import session1.dao.ItemAmeDao;
 import session1.dao.ItemAtractDao;
@@ -38,7 +41,8 @@ public class GUIAddListing extends javax.swing.JFrame {
     private AmenitesDao amenitesDao = new AmenitesDao();
     private ItemAmeDao itemAmeDao = new ItemAmeDao();
     private AttractionDao attractionsDao = new AttractionDao();
-    private ItemAtractDao itemattractions = new ItemAtractDao();
+    private ItemAtractDao itemattractionsDao = new ItemAtractDao();
+    private AreasDao areasDao = new AreasDao();
 
     private DefaultTableModel defaut = new DefaultTableModel();
 
@@ -52,6 +56,11 @@ public class GUIAddListing extends javax.swing.JFrame {
         List<Itemtypes> its = itemTypeDao.getAll();
         for (Itemtypes it : its) {
             typeCbb.addItem(it.getName());
+        }
+
+        List<Areas> areas = areasDao.getAreas();
+        for (Areas a : areas) {
+            areaCbb.addItem(a.getName());
         }
 
         List<Amenities> amenitieses = amenitesDao.getAmenities();
@@ -104,6 +113,8 @@ public class GUIAddListing extends javax.swing.JFrame {
         minSpin = new javax.swing.JSpinner();
         maxLb = new javax.swing.JLabel();
         maxSpin = new javax.swing.JSpinner();
+        jLabel1 = new javax.swing.JLabel();
+        areaCbb = new javax.swing.JComboBox<>();
         amenitiesPane = new javax.swing.JPanel();
         chooseLb = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -172,6 +183,14 @@ public class GUIAddListing extends javax.swing.JFrame {
 
         maxLb.setText("Maximum");
 
+        jLabel1.setText("Area: ");
+
+        areaCbb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                areaCbbActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout listingPaneLayout = new javax.swing.GroupLayout(listingPane);
         listingPane.setLayout(listingPaneLayout);
         listingPaneLayout.setHorizontalGroup(
@@ -184,7 +203,7 @@ public class GUIAddListing extends javax.swing.JFrame {
                             .addComponent(typeLb, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(capLb))
                         .addGap(48, 48, 48)
-                        .addGroup(listingPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(listingPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(listingPaneLayout.createSequentialGroup()
                                 .addComponent(capSpin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(67, 67, 67)
@@ -195,16 +214,22 @@ public class GUIAddListing extends javax.swing.JFrame {
                                 .addComponent(bedroomLb)
                                 .addGap(29, 29, 29)
                                 .addComponent(bedroomSpin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(57, 57, 57)
+                                .addGap(57, 57, 57))
+                            .addGroup(listingPaneLayout.createSequentialGroup()
+                                .addComponent(typeCbb, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(49, 49, 49)
+                                .addComponent(jLabel1)
+                                .addGap(32, 32, 32)
+                                .addComponent(areaCbb, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tittleLb, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)))
+                        .addGroup(listingPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(listingPaneLayout.createSequentialGroup()
                                 .addComponent(badroomsLb)
                                 .addGap(34, 34, 34)
                                 .addComponent(badroomSpin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(listingPaneLayout.createSequentialGroup()
-                                .addComponent(typeCbb, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(230, 230, 230)
-                                .addComponent(tittleLb, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(55, 55, 55)
-                                .addComponent(titleTf, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(titleTf, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, listingPaneLayout.createSequentialGroup()
                         .addGroup(listingPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(listingPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,7 +272,9 @@ public class GUIAddListing extends javax.swing.JFrame {
                     .addComponent(typeLb)
                     .addComponent(typeCbb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tittleLb)
-                    .addComponent(titleTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(titleTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(areaCbb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(listingPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(capLb)
@@ -460,9 +487,16 @@ public class GUIAddListing extends javax.swing.JFrame {
                 "Attraction", "Area", "Distance (km)", "On Foot (minutes)", "By Car (minutes)"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Integer.class, java.lang.Integer.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, true, true, true
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -558,7 +592,7 @@ public class GUIAddListing extends javax.swing.JFrame {
         item.setUserID(userDao.getUser(sharedData.getUsername()));
         item.setItemTypeID(itemTypeDao.getItemtypes(typeCbb.getSelectedItem().toString()));
 
-        item.setAreaID(null);
+        item.setAreaID(areasDao.getArea(areaCbb.getSelectedItem().toString()));
 
         item.setTitle(titleTf.getText());
         item.setCapacity((int) capSpin.getValue());
@@ -573,13 +607,13 @@ public class GUIAddListing extends javax.swing.JFrame {
         item.setMaximumNights((int) maxSpin.getValue());
 
         itemsDao.addItems(item);
-
         int rowCount = amenitiesTable.getRowCount();
-        List<Itemamenities> itemamenitieses = itemAmeDao.getItemamenitieses();
         for (int row = 0; row < rowCount; row++) {
             boolean checked = (amenitiesTable.getValueAt(row, 1) != null);
 
             if (checked) {
+                List<Itemamenities> itemamenitieses = itemAmeDao.getItemamenitieses();
+
                 String value = (String) amenitiesTable.getValueAt(row, 0);
                 Itemamenities ia = new Itemamenities();
                 ia.setId(itemamenitieses.get(itemamenitieses.size() - 1).getId() + 1);
@@ -591,28 +625,31 @@ public class GUIAddListing extends javax.swing.JFrame {
         }
 
         int rowCount2 = attractionTable.getRowCount();
-        List<Itemattractions> itemattractions = this.itemattractions.getItemAttractions();
 
         for (int row = 0; row < rowCount; row++) {
             boolean checked = (attractionTable.getValueAt(row, 2) != null || attractionTable.getValueAt(row, 3) != null || attractionTable.getValueAt(row, 4) != null);
             if (checked) {
-                BigDecimal value1 = (BigDecimal) attractionTable.getValueAt(row, 2);
-                BigInteger value2 = (BigInteger) attractionTable.getValueAt(row, 3);
-                BigInteger value3 = (BigInteger) attractionTable.getValueAt(row, 4);
+                Double value1 = (Double) attractionTable.getValueAt(row, 2);
+                Integer value2 = (Integer) attractionTable.getValueAt(row, 3);
+                Integer value3 = (Integer) attractionTable.getValueAt(row, 4);
+                List<Itemattractions> itemattractions = this.itemattractionsDao.getItemAttractions();
 
                 Itemattractions iat = new Itemattractions();
                 iat.setId(itemattractions.get(itemattractions.size() - 1).getId() + 1);
                 iat.setGuid(UUID.randomUUID().toString());
                 iat.setItemID(item);
                 iat.setAttractionID(attractionsDao.getAttraction(attractionTable.getValueAt(row, 0).toString()));
-                iat.setDistance(value1);
-                iat.setDurationOnFoot(value2);
-                iat.setDurationByCar(value3);
-                
-                itemattractions.add(iat);
+                iat.setDistance(value1 == null ? null : BigDecimal.valueOf(value1));
+                iat.setDurationOnFoot(value2 == null ? null : BigInteger.valueOf(value2));
+                iat.setDurationByCar(value3 == null ? null : BigInteger.valueOf(value3));
+
+                itemattractionsDao.addItemAtract(iat);
             }
 
         }
+
+        JOptionPane.showMessageDialog(null, "Success!", "ADD SUCCESS", JOptionPane.INFORMATION_MESSAGE);
+
 
     }//GEN-LAST:event_finishBtnActionPerformed
 
@@ -620,6 +657,10 @@ public class GUIAddListing extends javax.swing.JFrame {
         int next = (tabPane.getSelectedIndex() + 1) % tabPane.getTabCount();
         tabPane.setSelectedIndex(next);
     }//GEN-LAST:event_nextBtnActionPerformed
+
+    private void areaCbbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_areaCbbActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_areaCbbActionPerformed
 
     /**
      * @param args the command line arguments
@@ -663,6 +704,7 @@ public class GUIAddListing extends javax.swing.JFrame {
     private javax.swing.JTextField addressTf;
     private javax.swing.JPanel amenitiesPane;
     private javax.swing.JTable amenitiesTable;
+    private javax.swing.JComboBox<String> areaCbb;
     private javax.swing.JTable attractionTable;
     private javax.swing.JSpinner badroomSpin;
     private javax.swing.JLabel badroomsLb;
@@ -677,6 +719,7 @@ public class GUIAddListing extends javax.swing.JFrame {
     private javax.swing.JTextField descriptionTf;
     private javax.swing.JPanel distancePane;
     private javax.swing.JButton finishBtn;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel listingPane;

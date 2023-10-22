@@ -17,7 +17,7 @@ public class ItemAtractDao {
         return Manager.em.createNamedQuery("Itemattractions.findAll", Itemattractions.class).getResultList();
     }
 
-    public void add(Itemattractions iat) {
+    public void addItemAtract(Itemattractions iat) {
         Manager.em.getTransaction().begin();
         Manager.em.persist(iat);
         Manager.em.getTransaction().commit();

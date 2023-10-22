@@ -86,8 +86,8 @@
                                   <Component id="capLb" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
                                       <Component id="capSpin" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
                                       <Component id="bedsLb" min="-2" max="-2" attributes="0"/>
@@ -98,17 +98,25 @@
                                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                                       <Component id="bedroomSpin" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="typeCbb" min="-2" pref="232" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                                      <Component id="areaCbb" min="-2" pref="149" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="tittleLb" min="-2" pref="48" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
                                       <Component id="badroomsLb" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                                       <Component id="badroomSpin" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="typeCbb" min="-2" pref="232" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="230" max="-2" attributes="0"/>
-                                      <Component id="tittleLb" min="-2" pref="48" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                                      <Component id="titleTf" min="-2" pref="266" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="titleTf" min="-2" pref="213" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -168,6 +176,8 @@
                           <Component id="typeCbb" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="tittleLb" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="titleTf" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="areaCbb" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -327,6 +337,24 @@
             </Component>
             <Component class="javax.swing.JSpinner" name="maxSpin">
             </Component>
+            <Component class="javax.swing.JLabel" name="jLabel1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Area: "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="areaCbb">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="0"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="areaCbbActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="amenitiesPane">
@@ -477,9 +505,9 @@
                       <Table columnCount="5" rowCount="100">
                         <Column editable="false" title="Attraction" type="java.lang.Object"/>
                         <Column editable="false" title="Area" type="java.lang.Object"/>
-                        <Column editable="true" title="Distance (km)" type="java.lang.Object"/>
-                        <Column editable="true" title="On Foot (minutes)" type="java.lang.Object"/>
-                        <Column editable="true" title="By Car (minutes)" type="java.lang.Object"/>
+                        <Column editable="true" title="Distance (km)" type="java.lang.Double"/>
+                        <Column editable="true" title="On Foot (minutes)" type="java.lang.Integer"/>
+                        <Column editable="true" title="By Car (minutes)" type="java.lang.Integer"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
