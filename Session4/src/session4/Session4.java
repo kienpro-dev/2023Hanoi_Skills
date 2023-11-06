@@ -4,6 +4,10 @@
  */
 package session4;
 
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import session4.GUI.GUISearch;
+
 /**
  *
  * @author tienk
@@ -14,7 +18,16 @@ public class Session4 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        SwingUtilities.invokeLater(() -> {
+            try {
+                    String className = UIManager.getSystemLookAndFeelClassName();
+                    UIManager.setLookAndFeel(className);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            new GUISearch().setVisible(true);
+        });
     }
     
 }
