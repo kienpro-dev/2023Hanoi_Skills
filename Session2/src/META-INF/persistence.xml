@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence           http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+  <persistence-unit name="Session2PU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>session2.entity.Itemscores</class>
+    <class>session2.entity.Coupons</class>
+    <class>session2.entity.Items</class>
+    <class>session2.entity.Bookingdetails</class>
+    <class>session2.entity.Itemamenities</class>
+    <class>session2.entity.Itemprices</class>
+    <class>session2.entity.Transactiontypes</class>
+    <class>session2.entity.Dimdates</class>
+    <class>session2.entity.Itempictures</class>
+    <class>session2.entity.Transactions</class>
+    <class>session2.entity.Amenities</class>
+    <class>session2.entity.Usertypes</class>
+    <class>session2.entity.Scores</class>
+    <class>session2.entity.Areas</class>
+    <class>session2.entity.Users</class>
+    <class>session2.entity.Cancellationpolicies</class>
+    <class>session2.entity.Attractions</class>
+    <class>session2.entity.Itemattractions</class>
+    <class>session2.entity.Bookings</class>
+    <class>session2.entity.Itemtypes</class>
+    <class>session2.entity.Cancellationrefundfees</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/session2"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="123456"/>
+    </properties>
+  </persistence-unit>
+</persistence>
