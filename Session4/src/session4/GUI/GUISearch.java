@@ -198,6 +198,11 @@ public class GUISearch extends javax.swing.JFrame {
 
         searchTf.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         searchTf.setText("Enter area name, attraction, property title, property type, amenites ");
+        searchTf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchTfActionPerformed(evt);
+            }
+        });
 
         dateLb.setText("From:");
 
@@ -208,6 +213,11 @@ public class GUISearch extends javax.swing.JFrame {
         jLabel3.setText("people");
 
         searchBtn1.setText("Seach properties");
+        searchBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtn1ActionPerformed(evt);
+            }
+        });
 
         advBtn.setText("Advance search");
         advBtn.setToolTipText("");
@@ -267,7 +277,7 @@ public class GUISearch extends javax.swing.JFrame {
                     .addComponent(nightSpin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(peopleSpin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(advBtn))
-                .addContainerGap(158, Short.MAX_VALUE))
+                .addContainerGap(155, Short.MAX_VALUE))
         );
 
         searchTab.addTab("tab1", simpleSearchTab);
@@ -488,6 +498,17 @@ public class GUISearch extends javax.swing.JFrame {
     private void simpleSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpleSearchActionPerformed
         searchTab.setSelectedIndex((searchTab.getSelectedIndex() + 1) % searchTab.getTabCount());
     }//GEN-LAST:event_simpleSearchActionPerformed
+
+    private void searchTfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchTfActionPerformed
+
+    private void searchBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtn1ActionPerformed
+        String key = searchTf.getText();
+        int night = (Integer) nightSpin.getValue();
+        int capacity = (Integer) peopleSpin.getValue();
+        
+    }//GEN-LAST:event_searchBtn1ActionPerformed
 
     /**
      * @param args the command line arguments

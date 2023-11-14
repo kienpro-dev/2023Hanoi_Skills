@@ -38,7 +38,8 @@ import javax.persistence.Table;
     @NamedQuery(name = "Items.findByDescription", query = "SELECT i FROM Items i WHERE i.description = :description"),
     @NamedQuery(name = "Items.findByHostRules", query = "SELECT i FROM Items i WHERE i.hostRules = :hostRules"),
     @NamedQuery(name = "Items.findByMinimumNights", query = "SELECT i FROM Items i WHERE i.minimumNights = :minimumNights"),
-    @NamedQuery(name = "Items.findByMaximumNights", query = "SELECT i FROM Items i WHERE i.maximumNights = :maximumNights")})
+    @NamedQuery(name = "Items.findByMaximumNights", query = "SELECT i FROM Items i WHERE i.maximumNights = :maximumNights"),
+    @NamedQuery(name = "Items.findCustom", query = "SELECT i FROM Items i JOIN i.itemamenitiesList iamen JOIN i.itemattractionsList iatt WHERE i.capacity >= :capacity AND i.maximumNights - i.minimumNights >= :night AND (i.title LIKE :keyword OR i.areaID.name LIKE :keyword OR i.itemTypeID.name LIKE :keyword OR iamen.amenityID.name LIKE :keyword OR iatt.attractionID.name LIKE :keyword)")})
 public class Items implements Serializable {
 
     private static final long serialVersionUID = 1L;
