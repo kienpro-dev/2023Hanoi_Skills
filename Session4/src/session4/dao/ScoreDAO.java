@@ -4,10 +4,15 @@
  */
 package session4.dao;
 
+import java.util.List;
+import session4.entity.Itemscores;
+
 /**
  *
  * @author tienk
  */
 public class ScoreDAO {
-    
+    public List<Itemscores> findById(Long id) {
+        return Manager.em.createNamedQuery("Itemscores.findCustom", Itemscores.class).setParameter("id", id).getResultList();
+    }
 }

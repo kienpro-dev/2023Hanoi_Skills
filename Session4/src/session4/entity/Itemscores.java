@@ -25,7 +25,8 @@ import javax.persistence.Table;
     @NamedQuery(name = "Itemscores.findAll", query = "SELECT i FROM Itemscores i"),
     @NamedQuery(name = "Itemscores.findById", query = "SELECT i FROM Itemscores i WHERE i.id = :id"),
     @NamedQuery(name = "Itemscores.findByGuid", query = "SELECT i FROM Itemscores i WHERE i.guid = :guid"),
-    @NamedQuery(name = "Itemscores.findByValue", query = "SELECT i FROM Itemscores i WHERE i.value = :value")})
+    @NamedQuery(name = "Itemscores.findByValue", query = "SELECT i FROM Itemscores i WHERE i.value = :value"),
+    @NamedQuery(name = "Itemscores.findCustom", query = "SELECT i FROM Itemscores i WHERE i.itemID.id = :id")})
 public class Itemscores implements Serializable {
 
     private static final long serialVersionUID = 1L;

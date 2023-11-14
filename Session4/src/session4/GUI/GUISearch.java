@@ -4,17 +4,72 @@
  */
 package session4.GUI;
 
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import session4.dao.AmenityDAO;
+import session4.dao.AreaDAO;
+import session4.dao.AttractionDAO;
+import session4.dao.BookingDAO;
+import session4.dao.ItemTypeDAO;
+import session4.dao.ItemsDAO;
+import session4.dao.ScoreDAO;
+import session4.entity.Amenities;
+import session4.entity.Areas;
+import session4.entity.Attractions;
+import session4.entity.Bookings;
+import session4.entity.Items;
+import session4.entity.Itemscores;
+import session4.entity.Itemtypes;
+
 /**
  *
  * @author tienk
  */
 public class GUISearch extends javax.swing.JFrame {
 
-    /**
+    private ItemsDAO itemsDAO = new ItemsDAO();
+    private BookingDAO bookingDAO = new BookingDAO();
+    private ScoreDAO scoreDAO = new ScoreDAO();
+    private AmenityDAO amenityDAO = new AmenityDAO();
+    private AttractionDAO attractionDAO = new AttractionDAO();
+    private AreaDAO areaDAO = new AreaDAO();
+    private ItemTypeDAO typeDAO = new ItemTypeDAO();
+    private DefaultTableModel defaut = new DefaultTableModel();    /**
      * Creates new form GUISearch
      */
     public GUISearch() {
         initComponents();
+        searchTable.setModel(defaut);
+        defaut.addColumn("Property");
+        defaut.addColumn("Area");
+        defaut.addColumn("Average");
+        defaut.addColumn("Total completed reservations");
+        defaut.addColumn("Amount payable");
+        defaut.addColumn("Check-in at");
+        List<Items> items = itemsDAO.findAll();
+        List<Attractions> attractionses = attractionDAO.findAll();
+        List<Areas> areases = areaDAO.findAll();
+        List<Amenities> amenitiess = amenityDAO.findAll();
+        List<Itemtypes> types = typeDAO.findAll();
+        for(Items i : items) {
+            titleCbb.addItem(i.getTitle());
+        }
+        
+        for(Attractions i : attractionses) {
+            attractCbb.addItem(i.getName());
+        }
+        for(Areas i : areases) {
+            areaCbb.addItem(i.getName());
+        }
+        for(Amenities i : amenitiess) {
+            ameCbb1.addItem(i.getName());
+            ameCbb2.addItem(i.getName());
+            ameCbb3.addItem(i.getName());
+        }
+        for(Itemtypes i : types) {
+            typeCbb.addItem(i.getName());
+        }
     }
 
     /**
@@ -197,7 +252,7 @@ public class GUISearch extends javax.swing.JFrame {
         jLabel1.setText("Simple search");
 
         searchTf.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        searchTf.setText("Enter area name, attraction, property title, property type, amenites ");
+        searchTf.setText("Seoul Tower");
         searchTf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchTfActionPerformed(evt);
@@ -488,7 +543,7 @@ public class GUISearch extends javax.swing.JFrame {
     }//GEN-LAST:event_clearFormBtnActionPerformed
 
     private void searchBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtn2ActionPerformed
-        // TODO add your handling code here:
+        searchBtn1ActionPerformed(evt);
     }//GEN-LAST:event_searchBtn2ActionPerformed
 
     private void advBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_advBtnActionPerformed
@@ -504,9 +559,46 @@ public class GUISearch extends javax.swing.JFrame {
     }//GEN-LAST:event_searchTfActionPerformed
 
     private void searchBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtn1ActionPerformed
+        defaut.setRowCount(0);
         String key = searchTf.getText();
         int night = (Integer) nightSpin.getValue();
         int capacity = (Integer) peopleSpin.getValue();
+        
+        List<Items> items;
+        if(searchTab.getSelectedIndex() == 0) {
+            items = itemsDAO.findItemsCustom(capacity, night, key);
+        } else {
+            items = itemsDAO.findItemsCustom2(capacity, night, (String )titleCbb.getSelectedItem(), (String) areaCbb.getSelectedItem(), (String) typeCbb.getSelectedItem(), (String) attractCbb.getSelectedItem(), (String) ameCbb1.getSelectedItem() + (String) ameCbb2.getSelectedItem() + (String) ameCbb3.getSelectedItem());
+        }
+       
+       
+
+        if(items.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Not found", "Not found item", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            for(Items i : items) {
+                List<Itemscores> scores = scoreDAO.findById(i.getId());
+                List<Bookings> bookings = bookingDAO.findBookingsCustom(i.getId());
+                
+                double avg = 0;
+                if(!scores.isEmpty()) {
+                    for(Itemscores score : scores) {
+                        avg += score.getValue();
+                    }
+                    avg /= scores.size();
+                }
+                double paid = 0;
+                if(!bookings.isEmpty()) {
+                    for(Bookings booking : bookings) {
+                        paid += booking.getAmountPaid().doubleValue();
+                    }
+             
+                }
+                
+                defaut.addRow(new Object[]{i.getTitle(), i.getAreaID().getName(), avg, bookings.size(), paid});
+            }
+            
+        }
         
     }//GEN-LAST:event_searchBtn1ActionPerformed
 

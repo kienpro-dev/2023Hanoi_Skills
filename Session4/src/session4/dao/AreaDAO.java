@@ -4,10 +4,16 @@
  */
 package session4.dao;
 
+import java.util.List;
+import session4.entity.Areas;
+
 /**
  *
  * @author tienk
  */
 public class AreaDAO {
-    
+
+    public List<Areas> findAll() {
+        return Manager.em.createNamedQuery("Areas.findAll", Areas.class).getResultList();
+    }
 }

@@ -34,7 +34,7 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Bookings.findByGuid", query = "SELECT b FROM Bookings b WHERE b.guid = :guid"),
     @NamedQuery(name = "Bookings.findByBookingDate", query = "SELECT b FROM Bookings b WHERE b.bookingDate = :bookingDate"),
     @NamedQuery(name = "Bookings.findByAmountPaid", query = "SELECT b FROM Bookings b WHERE b.amountPaid = :amountPaid"),
-    @NamedQuery(name = "Bookings.findCustom", query = "SELECT b FROM Bookings b JOIN b.bookingdetailsList bd JOIN bd.itemPriceID ip WHERE ip.itemID = :itemId")})
+    @NamedQuery(name = "Bookings.findCustom", query = "SELECT b FROM Bookings b JOIN b.bookingdetailsList bd JOIN bd.itemPriceID ip WHERE ip.itemID.id = :itemId")})
 public class Bookings implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -5,14 +5,14 @@
 package session4.dao;
 
 import java.util.List;
-import session4.entity.Bookings;
+import session4.entity.Amenities;
 
 /**
  *
  * @author tienk
  */
-public class BookingDAO {
-    public List<Bookings> findBookingsCustom(Long itemId) {
-        return Manager.em.createNamedQuery("Bookings.findCustom", Bookings.class).setParameter("itemId", itemId).getResultList();
+public class AmenityDAO {
+    public List<Amenities> findAll() {
+        return Manager.em.createNamedQuery("Amenities.findAll", Amenities.class).getResultList();
     }
 }
