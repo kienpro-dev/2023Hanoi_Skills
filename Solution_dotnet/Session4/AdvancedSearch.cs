@@ -17,5 +17,10 @@ namespace Session4
             InitializeComponent();
         }
 
+        private void changeSimpleBtn_Click(object sender, EventArgs e)
+        {
+            Close();
+            new SimpleSearch().Show();
+        }
     }
 }

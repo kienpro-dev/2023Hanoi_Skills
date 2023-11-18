@@ -139,6 +139,11 @@
             this.peopleNum.Name = "peopleNum";
             this.peopleNum.Size = new System.Drawing.Size(75, 20);
             this.peopleNum.TabIndex = 15;
+            this.peopleNum.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // nightNum
             // 
@@ -146,6 +151,11 @@
             this.nightNum.Name = "nightNum";
             this.nightNum.Size = new System.Drawing.Size(75, 20);
             this.nightNum.TabIndex = 14;
+            this.nightNum.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // fromDate
             // 
@@ -316,6 +326,7 @@
             this.changeSimpleBtn.TabIndex = 30;
             this.changeSimpleBtn.Text = "Simple Search";
             this.changeSimpleBtn.UseVisualStyleBackColor = true;
+            this.changeSimpleBtn.Click += new System.EventHandler(this.changeSimpleBtn_Click);
             // 
             // clearBtn
             // 

@@ -1,0 +1,16 @@
+C:\Users\tienk\OneDrive\Documents\Code\Thi_Tay_Nghe\Solution_dotnet\Session4\bin\Debug\Session4.exe.config
+C:\Users\tienk\OneDrive\Documents\Code\Thi_Tay_Nghe\Solution_dotnet\Session4\bin\Debug\Session4.exe
+C:\Users\tienk\OneDrive\Documents\Code\Thi_Tay_Nghe\Solution_dotnet\Session4\bin\Debug\Session4.pdb
+C:\Users\tienk\OneDrive\Documents\Code\Thi_Tay_Nghe\Solution_dotnet\Session4\bin\Debug\EntityFramework.dll
+C:\Users\tienk\OneDrive\Documents\Code\Thi_Tay_Nghe\Solution_dotnet\Session4\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\tienk\OneDrive\Documents\Code\Thi_Tay_Nghe\Solution_dotnet\Session4\bin\Debug\EntityFramework.xml
+C:\Users\tienk\OneDrive\Documents\Code\Thi_Tay_Nghe\Solution_dotnet\Session4\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\tienk\OneDrive\Documents\Code\Thi_Tay_Nghe\Solution_dotnet\Session4\obj\Debug\Session4.csproj.AssemblyReference.cache
+C:\Users\tienk\OneDrive\Documents\Code\Thi_Tay_Nghe\Solution_dotnet\Session4\obj\Debug\Session4.AdvancedSearch.resources
+C:\Users\tienk\OneDrive\Documents\Code\Thi_Tay_Nghe\Solution_dotnet\Session4\obj\Debug\Session4.Properties.Resources.resources
+C:\Users\tienk\OneDrive\Documents\Code\Thi_Tay_Nghe\Solution_dotnet\Session4\obj\Debug\Session4.SimpleSearch.resources
+C:\Users\tienk\OneDrive\Documents\Code\Thi_Tay_Nghe\Solution_dotnet\Session4\obj\Debug\Session4.csproj.GenerateResource.cache
+C:\Users\tienk\OneDrive\Documents\Code\Thi_Tay_Nghe\Solution_dotnet\Session4\obj\Debug\Session4.csproj.CoreCompileInputs.cache
+C:\Users\tienk\OneDrive\Documents\Code\Thi_Tay_Nghe\Solution_dotnet\Session4\obj\Debug\Session4.csproj.CopyComplete
+C:\Users\tienk\OneDrive\Documents\Code\Thi_Tay_Nghe\Solution_dotnet\Session4\obj\Debug\Session4.exe
+C:\Users\tienk\OneDrive\Documents\Code\Thi_Tay_Nghe\Solution_dotnet\Session4\obj\Debug\Session4.pdb

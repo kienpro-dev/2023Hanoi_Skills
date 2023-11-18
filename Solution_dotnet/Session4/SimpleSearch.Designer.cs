@@ -65,6 +65,7 @@
             this.searchTb.Name = "searchTb";
             this.searchTb.Size = new System.Drawing.Size(512, 20);
             this.searchTb.TabIndex = 1;
+            this.searchTb.Text = "Seoul";
             // 
             // label2
             // 
@@ -116,6 +117,11 @@
             this.nightNum.Name = "nightNum";
             this.nightNum.Size = new System.Drawing.Size(75, 20);
             this.nightNum.TabIndex = 7;
+            this.nightNum.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // peopleNum
             // 
@@ -123,6 +129,11 @@
             this.peopleNum.Name = "peopleNum";
             this.peopleNum.Size = new System.Drawing.Size(75, 20);
             this.peopleNum.TabIndex = 8;
+            this.peopleNum.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // simpleSearchBtn
             // 
@@ -132,6 +143,7 @@
             this.simpleSearchBtn.TabIndex = 9;
             this.simpleSearchBtn.Text = "Search Properties";
             this.simpleSearchBtn.UseVisualStyleBackColor = true;
+            this.simpleSearchBtn.Click += new System.EventHandler(this.simpleSearchBtn_Click);
             // 
             // changeAdvanceBtn
             // 
@@ -141,6 +153,7 @@
             this.changeAdvanceBtn.TabIndex = 10;
             this.changeAdvanceBtn.Text = "Advanced Search";
             this.changeAdvanceBtn.UseVisualStyleBackColor = true;
+            this.changeAdvanceBtn.Click += new System.EventHandler(this.changeAdvanceBtn_Click);
             // 
             // simpleData
             // 
