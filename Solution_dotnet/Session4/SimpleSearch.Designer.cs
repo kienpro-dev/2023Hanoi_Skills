@@ -29,25 +29,25 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.searchTb = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.fromDate = new System.Windows.Forms.DateTimePicker();
+            this.nightNum = new System.Windows.Forms.NumericUpDown();
+            this.peopleNum = new System.Windows.Forms.NumericUpDown();
+            this.simpleSearchBtn = new System.Windows.Forms.Button();
+            this.changeAdvanceBtn = new System.Windows.Forms.Button();
+            this.simpleData = new System.Windows.Forms.DataGridView();
             this.Property = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Area = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AvarageScore = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AmountPayable = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nightNum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.peopleNum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleData)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -59,12 +59,12 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Simple Search";
             // 
-            // textBox1
+            // searchTb
             // 
-            this.textBox1.Location = new System.Drawing.Point(51, 50);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(512, 20);
-            this.textBox1.TabIndex = 1;
+            this.searchTb.Location = new System.Drawing.Point(51, 50);
+            this.searchTb.Name = "searchTb";
+            this.searchTb.Size = new System.Drawing.Size(512, 20);
+            this.searchTb.TabIndex = 1;
             // 
             // label2
             // 
@@ -102,63 +102,63 @@
             this.label5.TabIndex = 5;
             this.label5.Text = "people";
             // 
-            // dateTimePicker1
+            // fromDate
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(93, 95);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(86, 20);
-            this.dateTimePicker1.TabIndex = 6;
+            this.fromDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.fromDate.Location = new System.Drawing.Point(93, 95);
+            this.fromDate.Name = "fromDate";
+            this.fromDate.Size = new System.Drawing.Size(86, 20);
+            this.fromDate.TabIndex = 6;
             // 
-            // numericUpDown1
+            // nightNum
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(276, 96);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(75, 20);
-            this.numericUpDown1.TabIndex = 7;
+            this.nightNum.Location = new System.Drawing.Point(276, 96);
+            this.nightNum.Name = "nightNum";
+            this.nightNum.Size = new System.Drawing.Size(75, 20);
+            this.nightNum.TabIndex = 7;
             // 
-            // numericUpDown2
+            // peopleNum
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(441, 95);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(75, 20);
-            this.numericUpDown2.TabIndex = 8;
+            this.peopleNum.Location = new System.Drawing.Point(441, 95);
+            this.peopleNum.Name = "peopleNum";
+            this.peopleNum.Size = new System.Drawing.Size(75, 20);
+            this.peopleNum.TabIndex = 8;
             // 
-            // button1
+            // simpleSearchBtn
             // 
-            this.button1.Location = new System.Drawing.Point(626, 50);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(123, 23);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Search Properties";
-            this.button1.UseVisualStyleBackColor = true;
+            this.simpleSearchBtn.Location = new System.Drawing.Point(626, 50);
+            this.simpleSearchBtn.Name = "simpleSearchBtn";
+            this.simpleSearchBtn.Size = new System.Drawing.Size(123, 23);
+            this.simpleSearchBtn.TabIndex = 9;
+            this.simpleSearchBtn.Text = "Search Properties";
+            this.simpleSearchBtn.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // changeAdvanceBtn
             // 
-            this.button2.Location = new System.Drawing.Point(626, 95);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(123, 23);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "Advanced Search";
-            this.button2.UseVisualStyleBackColor = true;
+            this.changeAdvanceBtn.Location = new System.Drawing.Point(626, 95);
+            this.changeAdvanceBtn.Name = "changeAdvanceBtn";
+            this.changeAdvanceBtn.Size = new System.Drawing.Size(123, 23);
+            this.changeAdvanceBtn.TabIndex = 10;
+            this.changeAdvanceBtn.Text = "Advanced Search";
+            this.changeAdvanceBtn.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // simpleData
             // 
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.simpleData.AllowUserToAddRows = false;
+            this.simpleData.AllowUserToDeleteRows = false;
+            this.simpleData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.simpleData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.simpleData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Property,
             this.Area,
             this.AvarageScore,
             this.Total,
             this.AmountPayable});
-            this.dataGridView1.Location = new System.Drawing.Point(51, 147);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(698, 291);
-            this.dataGridView1.TabIndex = 11;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.simpleData.Location = new System.Drawing.Point(51, 147);
+            this.simpleData.Name = "simpleData";
+            this.simpleData.ReadOnly = true;
+            this.simpleData.Size = new System.Drawing.Size(698, 291);
+            this.simpleData.TabIndex = 11;
             // 
             // Property
             // 
@@ -195,23 +195,23 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.numericUpDown2);
-            this.Controls.Add(this.numericUpDown1);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.simpleData);
+            this.Controls.Add(this.changeAdvanceBtn);
+            this.Controls.Add(this.simpleSearchBtn);
+            this.Controls.Add(this.peopleNum);
+            this.Controls.Add(this.nightNum);
+            this.Controls.Add(this.fromDate);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.searchTb);
             this.Controls.Add(this.label1);
             this.Name = "SimpleSearch";
             this.Text = "Seoul Stay - Search Properties and Listings";
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nightNum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.peopleNum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleData)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -220,17 +220,17 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox searchTb;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DateTimePicker fromDate;
+        private System.Windows.Forms.NumericUpDown nightNum;
+        private System.Windows.Forms.NumericUpDown peopleNum;
+        private System.Windows.Forms.Button simpleSearchBtn;
+        private System.Windows.Forms.Button changeAdvanceBtn;
+        private System.Windows.Forms.DataGridView simpleData;
         private System.Windows.Forms.DataGridViewTextBoxColumn Property;
         private System.Windows.Forms.DataGridViewTextBoxColumn Area;
         private System.Windows.Forms.DataGridViewTextBoxColumn AvarageScore;
