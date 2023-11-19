@@ -12,6 +12,8 @@ namespace Session4
 {
     public partial class SimpleSearch : Form
     {
+        Session4Entities entity = new Session4Entities();
+
         public SimpleSearch()
         {
             InitializeComponent();
@@ -29,8 +31,6 @@ namespace Session4
             string search = searchTb.Text;
             int capacity = Convert.ToInt32(peopleNum.Text);
             int night = Convert.ToInt32(nightNum.Text);
-
-            Session4Entities entity = new Session4Entities();
 
             HashSet<Items> items = (from it in entity.Items
                                  join ia in entity.ItemAmenities on it.ID equals ia.ItemID
