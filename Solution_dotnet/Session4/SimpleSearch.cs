@@ -13,16 +13,19 @@ namespace Session4
     public partial class SimpleSearch : Form
     {
         Session4Entities entity = new Session4Entities();
+        AdvancedSearch advancedSearch;
 
         public SimpleSearch()
         {
             InitializeComponent();
+            advancedSearch = new AdvancedSearch();
         }
 
         private void changeAdvanceBtn_Click(object sender, EventArgs e)
         {
-            Close();
-            new AdvancedSearch().Show();
+        
+            advancedSearch.Show();
+            Hide();
         }
 
         private void simpleSearchBtn_Click(object sender, EventArgs e)

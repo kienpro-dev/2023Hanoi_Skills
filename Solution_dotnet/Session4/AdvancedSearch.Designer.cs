@@ -98,6 +98,7 @@
             this.areaCbb.Name = "areaCbb";
             this.areaCbb.Size = new System.Drawing.Size(121, 21);
             this.areaCbb.TabIndex = 2;
+            this.areaCbb.SelectedIndexChanged += new System.EventHandler(this.areaCbb_SelectedIndexChanged);
             // 
             // attractCbb
             // 
@@ -136,6 +137,16 @@
             // peopleNum
             // 
             this.peopleNum.Location = new System.Drawing.Point(623, 92);
+            this.peopleNum.Maximum = new decimal(new int[] {
+            14,
+            0,
+            0,
+            0});
+            this.peopleNum.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.peopleNum.Name = "peopleNum";
             this.peopleNum.Size = new System.Drawing.Size(75, 20);
             this.peopleNum.TabIndex = 15;
@@ -148,6 +159,16 @@
             // nightNum
             // 
             this.nightNum.Location = new System.Drawing.Point(458, 93);
+            this.nightNum.Maximum = new decimal(new int[] {
+            14,
+            0,
+            0,
+            0});
+            this.nightNum.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.nightNum.Name = "nightNum";
             this.nightNum.Size = new System.Drawing.Size(75, 20);
             this.nightNum.TabIndex = 14;
@@ -164,6 +185,7 @@
             this.fromDate.Name = "fromDate";
             this.fromDate.Size = new System.Drawing.Size(86, 20);
             this.fromDate.TabIndex = 13;
+            this.fromDate.ValueChanged += new System.EventHandler(this.fromDate_ValueChanged);
             // 
             // label5
             // 
@@ -208,6 +230,7 @@
             this.toDate.Name = "toDate";
             this.toDate.Size = new System.Drawing.Size(86, 20);
             this.toDate.TabIndex = 17;
+            this.toDate.ValueChanged += new System.EventHandler(this.toDate_ValueChanged);
             // 
             // label9
             // 
@@ -345,6 +368,7 @@
             this.advanceSearchBtn.TabIndex = 32;
             this.advanceSearchBtn.Text = "Search properties";
             this.advanceSearchBtn.UseVisualStyleBackColor = true;
+            this.advanceSearchBtn.Click += new System.EventHandler(this.advanceSearchBtn_Click);
             // 
             // advanceData
             // 
