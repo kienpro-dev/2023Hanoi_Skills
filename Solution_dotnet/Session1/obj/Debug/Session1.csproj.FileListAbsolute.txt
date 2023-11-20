@@ -1,0 +1,12 @@
+C:\Users\tienk\OneDrive\Documents\Code\Thi_Tay_Nghe\Solution_dotnet\Session1\bin\Debug\Session1.exe.config
+C:\Users\tienk\OneDrive\Documents\Code\Thi_Tay_Nghe\Solution_dotnet\Session1\bin\Debug\Session1.exe
+C:\Users\tienk\OneDrive\Documents\Code\Thi_Tay_Nghe\Solution_dotnet\Session1\bin\Debug\Session1.pdb
+C:\Users\tienk\OneDrive\Documents\Code\Thi_Tay_Nghe\Solution_dotnet\Session1\obj\Debug\Session1.csproj.AssemblyReference.cache
+C:\Users\tienk\OneDrive\Documents\Code\Thi_Tay_Nghe\Solution_dotnet\Session1\obj\Debug\Session1.Properties.Resources.resources
+C:\Users\tienk\OneDrive\Documents\Code\Thi_Tay_Nghe\Solution_dotnet\Session1\obj\Debug\Session1.csproj.GenerateResource.cache
+C:\Users\tienk\OneDrive\Documents\Code\Thi_Tay_Nghe\Solution_dotnet\Session1\obj\Debug\Session1.csproj.CoreCompileInputs.cache
+C:\Users\tienk\OneDrive\Documents\Code\Thi_Tay_Nghe\Solution_dotnet\Session1\obj\Debug\Session1.exe
+C:\Users\tienk\OneDrive\Documents\Code\Thi_Tay_Nghe\Solution_dotnet\Session1\obj\Debug\Session1.pdb
+C:\Users\tienk\OneDrive\Documents\Code\Thi_Tay_Nghe\Solution_dotnet\Session1\obj\Debug\Session1.Login.resources
+C:\Users\tienk\OneDrive\Documents\Code\Thi_Tay_Nghe\Solution_dotnet\Session1\obj\Debug\Session1.Register.resources
+C:\Users\tienk\OneDrive\Documents\Code\Thi_Tay_Nghe\Solution_dotnet\Session1\obj\Debug\Session1.Term.resources
