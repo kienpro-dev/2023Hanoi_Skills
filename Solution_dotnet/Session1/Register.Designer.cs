@@ -227,6 +227,7 @@
             this.agree.TabIndex = 17;
             this.agree.Text = "I agreed with terms and conditions";
             this.agree.UseVisualStyleBackColor = true;
+            this.agree.CheckedChanged += new System.EventHandler(this.agree_CheckedChanged);
             // 
             // term
             // 
@@ -249,6 +250,7 @@
             this.regist.TabIndex = 19;
             this.regist.Text = "Register and Login";
             this.regist.UseVisualStyleBackColor = true;
+            this.regist.Click += new System.EventHandler(this.regist_Click);
             // 
             // button2
             // 

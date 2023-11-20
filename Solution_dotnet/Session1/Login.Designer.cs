@@ -105,9 +105,9 @@
             this.pass.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pass.Location = new System.Drawing.Point(249, 227);
             this.pass.Name = "pass";
+            this.pass.PasswordChar = '*';
             this.pass.Size = new System.Drawing.Size(272, 29);
             this.pass.TabIndex = 6;
-            this.pass.UseSystemPasswordChar = true;
             // 
             // sign
             // 
@@ -141,6 +141,7 @@
             this.log.TabIndex = 9;
             this.log.Text = "LOGIN";
             this.log.UseVisualStyleBackColor = true;
+            this.log.Click += new System.EventHandler(this.log_Click);
             // 
             // exit
             // 
