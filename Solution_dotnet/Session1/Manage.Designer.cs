@@ -30,7 +30,12 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.search = new System.Windows.Forms.Button();
             this.data = new System.Windows.Forms.DataGridView();
+            this.Tittle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Area = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Capacity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.searchT = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.add = new System.Windows.Forms.Button();
@@ -42,11 +47,6 @@
             this.edit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.logout = new System.Windows.Forms.Button();
             this.exit = new System.Windows.Forms.Button();
-            this.search = new System.Windows.Forms.Button();
-            this.Tittle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Area = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Capacity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.data)).BeginInit();
@@ -78,6 +78,17 @@
             this.tabPage1.Text = "I\'m Traveler";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // search
+            // 
+            this.search.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.search.Location = new System.Drawing.Point(401, 4);
+            this.search.Name = "search";
+            this.search.Size = new System.Drawing.Size(91, 34);
+            this.search.TabIndex = 3;
+            this.search.Text = "Search";
+            this.search.UseVisualStyleBackColor = true;
+            this.search.Click += new System.EventHandler(this.search_Click);
+            // 
             // data
             // 
             this.data.AllowUserToAddRows = false;
@@ -94,6 +105,31 @@
             this.data.ReadOnly = true;
             this.data.Size = new System.Drawing.Size(708, 256);
             this.data.TabIndex = 1;
+            // 
+            // Tittle
+            // 
+            this.Tittle.HeaderText = "Tittle";
+            this.Tittle.Name = "Tittle";
+            this.Tittle.ReadOnly = true;
+            this.Tittle.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            // 
+            // Area
+            // 
+            this.Area.HeaderText = "Area";
+            this.Area.Name = "Area";
+            this.Area.ReadOnly = true;
+            // 
+            // Capacity
+            // 
+            this.Capacity.HeaderText = "Capacity";
+            this.Capacity.Name = "Capacity";
+            this.Capacity.ReadOnly = true;
+            // 
+            // Type
+            // 
+            this.Type.HeaderText = "Type";
+            this.Type.Name = "Type";
+            this.Type.ReadOnly = true;
             // 
             // searchT
             // 
@@ -195,42 +231,6 @@
             this.exit.UseVisualStyleBackColor = true;
             this.exit.Click += new System.EventHandler(this.exit_Click);
             // 
-            // search
-            // 
-            this.search.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.search.Location = new System.Drawing.Point(401, 4);
-            this.search.Name = "search";
-            this.search.Size = new System.Drawing.Size(91, 34);
-            this.search.TabIndex = 3;
-            this.search.Text = "Search";
-            this.search.UseVisualStyleBackColor = true;
-            this.search.Click += new System.EventHandler(this.search_Click);
-            // 
-            // Tittle
-            // 
-            this.Tittle.HeaderText = "Tittle";
-            this.Tittle.Name = "Tittle";
-            this.Tittle.ReadOnly = true;
-            this.Tittle.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // Area
-            // 
-            this.Area.HeaderText = "Area";
-            this.Area.Name = "Area";
-            this.Area.ReadOnly = true;
-            // 
-            // Capacity
-            // 
-            this.Capacity.HeaderText = "Capacity";
-            this.Capacity.Name = "Capacity";
-            this.Capacity.ReadOnly = true;
-            // 
-            // Type
-            // 
-            this.Type.HeaderText = "Type";
-            this.Type.Name = "Type";
-            this.Type.ReadOnly = true;
-            // 
             // Listing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -241,6 +241,7 @@
             this.Controls.Add(this.tabControl1);
             this.Name = "Listing";
             this.Text = "Seoul Stay - Management";
+            this.Load += new System.EventHandler(this.Listing_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();

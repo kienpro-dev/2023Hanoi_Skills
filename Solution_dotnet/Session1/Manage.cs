@@ -18,8 +18,6 @@ namespace Session1
         {
             InitializeComponent();
             this.user = user;
-            loadTraver();
-            loadManage();
         }
 
         private void exit_Click(object sender, EventArgs e)
@@ -46,7 +44,7 @@ namespace Session1
 
         private void loadManage()
         {
-            entity.Items.Where(i => i.ID == user.ID).ToList().ForEach(i => { data.Rows.Add(i.Title, i.Area.Name, i.Capacity, i.ItemType.Name, "Edit detail"); });
+            entity.Items.Where(i => i.ID == user.ID).ToList().ForEach(i => { data2.Rows.Add(i.Title, i.Area.Name, i.Capacity, i.ItemType.Name, "Edit detail"); });
         }
 
         private void data2_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -67,6 +65,12 @@ namespace Session1
             entity.Items.Where(x => x.Title.Contains(searchT.Text)).ToList().ForEach(i => {
                 data.Rows.Add(i.Title, i.Area.Name, i.Capacity, i.ItemType.Name);
             });
+        }
+
+        private void Listing_Load(object sender, EventArgs e)
+        {
+            loadTraver();
+            loadManage();
         }
     }
 }

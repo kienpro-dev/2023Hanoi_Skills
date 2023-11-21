@@ -70,7 +70,111 @@ namespace Session1
 
         private void finish_Click(object sender, EventArgs e)
         {
+            Item item = new Item()
+            {
+                ItemTypeID = entity.ItemTypes.ToList()[type.SelectedIndex].ID,
+                Title = title.Text,
+                Capacity = Convert.ToInt32(capacity.Value),
+                NumberOfBeds = Convert.ToInt32(bed.Value),
+                NumberOfBedrooms = Convert.ToInt32(bedroom.Value),
+                NumberOfBathrooms = Convert.ToInt32(bathroom.Value),
+                ApproximateAddress = address1.Text,
+                ExactAddress = address2.Text,
+                Description = description.Text,
+                HostRules = rule.Text,
+                MinimumNights = Convert.ToInt32(min.Value),
+                MaximumNights = Convert.ToInt32(max.Value),
+                UserID = user.ID
+            };
 
+            if(this.item == null)
+            {
+                item.ID = entity.Items.ToList().LastOrDefault().ID + 1;
+                item.GUID = Guid.NewGuid();
+            } 
+            else
+            {
+                item.ID = this.item.ID; 
+                item.GUID = this.item.GUID;
+            }
+
+            List<ItemAmenity> itemAmenities = new List<ItemAmenity>();
+            long imId = entity.ItemAmenities.OrderByDescending(x => x.ID)
+                .FirstOrDefault().ID + 1;
+            for (int i = 0; i < ame.Rows.Count; i++)
+            {
+                if ((bool)ame.Rows[i].Cells[1].Value)
+                {
+                    ItemAmenity im = new ItemAmenity()
+                    {
+                        ID = imId++,
+                        GUID = Guid.NewGuid(),
+                        ItemID = item.ID,
+                        AmenityID = entity.Amenities.ToList()[i].ID,
+                    };
+                    itemAmenities.Add(im);
+                }
+            }
+            item.ItemAmenities = itemAmenities;
+
+            List<ItemAttraction> itemAttractions = new List<ItemAttraction>();
+            long iatId = entity.ItemAttractions.OrderByDescending(x => x.ID)
+                .FirstOrDefault().ID + 1;
+            for (int i = 0; i < attData.Rows.Count; i++)
+            {
+                decimal Distance;
+                long DurationOnFoot, DurationByCar;
+                if (decimal.TryParse((string)attData.Rows[i].Cells[2].Value, out Distance)
+                    && long.TryParse((string)attData.Rows[i].Cells[3].Value, out DurationOnFoot)
+                    && long.TryParse((string)attData.Rows[i].Cells[4].Value, out DurationByCar))
+                {
+                    ItemAttraction iat = new ItemAttraction()
+                    {
+                        ID = iatId++,
+                        GUID = Guid.NewGuid(),
+                        ItemID = item.ID,
+                        Attraction = entity.Attractions.ToList()[i],
+                        Distance = Distance,
+                        DurationOnFoot = DurationOnFoot,
+                        DurationByCar = DurationByCar
+                    };
+                    itemAttractions.Add(iat);
+                }
+            }
+            if (itemAttractions.Count > 0)
+            {
+                item.ItemAttractions = itemAttractions;
+                ItemAttraction minIat = itemAttractions[0];
+                item.AreaID = minIat.Attraction.AreaID;
+                foreach (ItemAttraction i in itemAttractions)
+                {
+                    if (minIat.Distance > i.Distance)
+                    {
+                        item.AreaID = i.Attraction.AreaID;
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Choose at least 1 attraction");
+                return;
+            }
+
+            if (this.item == null)
+            {
+                entity.Items.Add(item);
+                entity.SaveChanges();
+                MessageBox.Show("Add listing successfull");
+            }
+            else
+            {
+                entity.Entry(item).State = System.Data.Entity.EntityState.Modified;
+                entity.SaveChanges();
+                MessageBox.Show("Edit listing successfull");
+            }
+
+            Close();
+            new Listing(user).Show();
         }
     }
 }
